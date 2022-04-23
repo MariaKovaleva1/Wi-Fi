@@ -1,0 +1,124 @@
+<template>
+  <div id="inicio" class="change_color">
+    <nav
+      class="2xl:py-20 fixed justify-around lg:flex py-4 sm:py-8 w-full z-50 change_color"
+      :style="{ background: changeColor ? 'white' : 'black' }"
+    >
+      <div class="flex items-center justify-between lg:justify-around md:mx-8 mx-4 z-50">
+        <router-link to="/">
+          <img class="h-12 md:h-20 md:w-20 w-12" alt="Admiga logo" src="../assets/logo_admiga.png" />
+        </router-link>
+        <div class="flex lg:hidden relative" @click="showMenu = !showMenu">
+          <button
+            class="
+              bg-trans
+              border-2 border-red-400
+              outline-none
+              p-1
+              px-2
+              py-1
+              relative
+              rounded-full
+              shadow-lg
+              text-red-500
+            "
+            @click="menu"
+          >
+            Menú
+          </button>
+        </div>
+      </div>
+      <ul
+        :class="showMenu ? 'flex' : 'hidden'"
+        class="
+          2xl:pl-28
+          flex flex-col
+          grow-0
+          lg:flex lg:flex-row lg:items-center lg:mt-0 lg:relative lg:space-x-10 lg:space-y-0
+          md:grow-0
+          mt-8
+          space-x-0 space-y-4
+          text-right
+          xl:pl-24
+        "
+      >
+        <li>
+          <a
+            href="/#inicio"
+            class="
+              text-lg
+              font-bold
+              text-gray-500
+              hover:text-red-500
+              bg-gray-200
+              lg:bg-transparent
+              rounded-lg
+              pl-28
+              pb-48
+              pr-4
+              pt-4
+            "
+            >Inicio</a
+          >
+        </li>
+        <li>
+          <a
+            href="/#admiga"
+            class="text-lg font-bold text-gray-500 hover:text-red-500 bg-gray-200 md:bg-transparent pr-4"
+            >AdmiGa</a
+          >
+        </li>
+        <li>
+          <a
+            href="/#funcionalidades"
+            class="text-lg font-bold text-gray-500 hover:text-red-500 bg-gray-200 md:bg-transparent pr-4"
+            >Funcionalidades</a
+          >
+        </li>
+        <li>
+          <a
+            href="/#contactos"
+            class="text-lg font-bold text-gray-500 hover:text-red-500 bg-gray-200 md:bg-transparent pr-4"
+            >Contáctanos</a
+          >
+        </li>
+        <li>
+          <router-link
+            to="/policies"
+            class="text-lg font-bold text-gray-500 hover:text-red-500 bg-gray-200 md:bg-transparent pr-4"
+            >Politicas</router-link
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      showMenu: false,
+      distanceScrolled: 0,
+      changeColor: true,
+    }
+  },
+
+  mounted() {
+    this.detectScroll()
+  },
+
+  methods: {
+    detectScroll() {
+      window.onscroll = function () {
+        this.distanceScrolled = document.documentElement.scrollTop
+        console.log(this.distanceScrolled)
+
+        if (this.distanceScrolled > 100) {
+          this.changeColor = false
+        }
+      }
+    },
+  },
+}
+</script>
